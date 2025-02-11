@@ -47,4 +47,7 @@ export default tseslint.config({
     ...react.configs['jsx-runtime'].rules,
   },
 })
+
 ```
+![img.png](img.png)
+

@@ -1,0 +1,6 @@
+@use "_variables" as vars;
+
+.container {
+  max-width: vars.$container-max-width;
+  margin: 40px auto;
+}

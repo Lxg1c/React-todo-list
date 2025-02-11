@@ -1,0 +1,9 @@
+@use "_variables" as vars;
+
+#header__title {
+  font: {
+    size: vars.$header-font-size;
+    weight: vars.$header-font-weight;
+  }
+  text-align: center;
+}

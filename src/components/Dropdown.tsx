@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { DownOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Button, Dropdown, Space, ConfigProvider } from 'antd';
+import {CustomBtn} from "../utils/const.ts";
 
 const items: MenuProps['items'] = [
     {
-        label: 'All',
+        label: 'ALL',
         key: '1',
     },
     {
@@ -19,7 +20,7 @@ const items: MenuProps['items'] = [
 ];
 
 const App: React.FC = () => {
-    const [currentValue, setCurrentValue] = useState<string>('All');
+    const [currentValue, setCurrentValue] = useState<string>('ALL');
 
     const handleMenuClick: MenuProps['onClick'] = (e) => {
         setCurrentValue(e.key === '1' ? 'All' : e.key === '2' ? 'Completed' : 'Incomplete');
@@ -33,16 +34,10 @@ const App: React.FC = () => {
     return (
         <>
             <ConfigProvider
-                theme={{
-                    token: {
-                        colorPrimary: '#6C63FF', // Основной цвет
-                        borderRadius: 8, // Радиус скругления
-                        colorBgContainer: '#f0f0f0', // Цвет фона
-                    },
-                }}
+                theme={CustomBtn}
             >
                 <Dropdown menu={menuProps}>
-                    <Button style={{ background: '#6C63FF', color: '#ffffff' }}>
+                    <Button size={'large'}>
                         <Space>
                             {currentValue}
                             <DownOutlined />

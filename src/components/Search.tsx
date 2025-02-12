@@ -1,11 +1,11 @@
 import React from 'react';
 import { ConfigProvider, Input } from 'antd';
-import {SearchTheme} from "../utils/cont.ts";
+import {CustomSearchTheme} from "../utils/const.ts";
 
 const Search: React.FC = () => {
     return (
         <ConfigProvider
-            theme={SearchTheme}>
+            theme={CustomSearchTheme}>
 
             <Input placeholder="Search note..." />
         </ConfigProvider>

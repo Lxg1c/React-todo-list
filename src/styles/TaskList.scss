@@ -1,0 +1,20 @@
+@use "variables" as vars;
+
+.task__list {
+  display: flex;                  /* Используем flexbox для центрирования */
+  flex-direction: column;         /* Центрируем элементы по вертикали */
+  align-items: center;            /* Центрируем все элементы по горизонтали */
+  margin: 30px auto;              /* Центрируем контейнер */
+  padding: 0;                     /* Убираем отступы */
+  width: 100%;                    /* 100% ширины родителя */
+  max-width: 520px;               /* Максимальная ширина */
+}
+
+.task__list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;                    /* Задаем ширину в 100% для элементов */
+  padding: 16px 0;
+  border-bottom: 1px solid vars.$primary-color;
+}

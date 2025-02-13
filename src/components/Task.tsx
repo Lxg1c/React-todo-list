@@ -14,25 +14,23 @@ const Task: React.FC<TaskProps> = ({ taskContent, status }) => {
         console.log(`checked = ${e.target.checked}`);
     };
 
-    const textStatus = status ? { textDecoration: "line-through" } : null;
-
     return (
-        <div className="task flex justify-between">
+        <>
             <div className='task__content flex'>
                 <Checkbox checked={status} onChange={onChange} />
-                <h1 style={textStatus}>{taskContent}</h1>
+                <h1 className='task__title'>{taskContent}</h1>
             </div>
 
             <div className='taskControls'>
-                <button>
+                <button className='btn-reset'>
                     <img src={reeditIcon} alt="Re-edit Task"/>
                 </button>
 
-                <button>
+                <button className='btn-reset'>
                     <img src={trashIcon} alt='Delete Task'/>
                 </button>
             </div>
-        </div>
+        </>
     );
 }
 

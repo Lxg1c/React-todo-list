@@ -16,10 +16,12 @@ const NewNoteControls: React.FC<NewNoteControlsProps> = ({ onClose, onApply }) =
 
     return (
         <div className="modal__content-controls flex justify-between align-middle mt-32">
-            <Button>CANCEL</Button>
-            <Btn children='APPLY'/>
+            <Button onClick={onClose}>CANCEL</Button>
+            <Btn onClick={handleApplyAndClose}>
+                APPLY
+            </Btn>
         </div>
-    )
-}
+    );
+};
 
 export default NewNoteControls;

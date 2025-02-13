@@ -13,8 +13,3 @@ export const CustomBtn = {
         }
     }
 }
-
-export interface TaskInterface {
-    id: number,
-    taskContent: string
-}

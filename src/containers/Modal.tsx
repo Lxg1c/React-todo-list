@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import Search from "./Search.tsx";
+import Search from "../components/Search.tsx";
 import '../styles/Modal.scss';
-import NewNoteControls from "../containers/NewNoteControls.tsx";
+import NewNoteControls from "./NewNoteControls.tsx";
 
 interface ModalProps {
     onClose: () => void;
@@ -29,8 +29,8 @@ const Modal: React.FC<ModalProps> = ({ onClose, onApply, onChange }) => {
         <div className="modal">
             <div className="modal__content">
                 <h1 className="modal__content-title mb-6.25">NEW NOTE</h1>
-                <Search />
-                <NewNoteControls />
+                <Search onChange={onChange} />
+                <NewNoteControls onClose={onClose} onApply={onApply} />
             </div>
         </div>,
         portalRoot

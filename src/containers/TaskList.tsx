@@ -1,6 +1,6 @@
 import React from "react";
 // import emptyLight from '../../public/empty-light.svg'
-import Task from "../components/Task.tsx";
+import Task from "./Task.tsx";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store.ts";
 import "../styles/TaskList.scss"
@@ -12,7 +12,7 @@ const TaskList: React.FC = () => {
         <ul className="task__list">
             {tasks.map((task, index: number) => (
                 <li key={index} className="task__list-item">
-                    <Task status={task.status} taskContent={task.taskContent} />
+                    <Task id={task.id} status={task.status} taskContent={task.taskContent} />
                 </li>
             ))}
         </ul>

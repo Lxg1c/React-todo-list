@@ -4,7 +4,13 @@ import Search from "./Search.tsx";
 import '../styles/Modal.scss';
 import NewNoteControls from "../containers/NewNoteControls.tsx";
 
-const Modal: React.FC = () => {
+interface ModalProps {
+    onClose: () => void;
+    onApply: () => void;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;  // Исправили тип на функцию
+}
+
+const Modal: React.FC<ModalProps> = ({ onClose, onApply, onChange }) => {
     const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
 
     useEffect(() => {

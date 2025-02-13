@@ -1,7 +1,7 @@
 // App.tsx
 import './styles/App.scss';
 import Header from './containers/Header.tsx';
-import TaskBar from './containers/TopBar.tsx';
+import TaskBar from './containers/TaskBar.tsx';
 import AddTaskBtn from './containers/AddTaskBtn.tsx';
 import Modal from './containers/Modal.tsx';
 import React, {JSX, useState} from 'react';

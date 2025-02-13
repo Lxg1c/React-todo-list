@@ -9,12 +9,10 @@ function App(): JSX.Element {
     return (
         <div className='app container h-full relative'>
             <Header />
-            
-            <main>
-                <div className='main__top flex mt-5 gap-4'>
-                    <Search />
-                    <CustomDropdown />
-                </div>
+            <main className='relative'>
+                <TaskBar />
+                <TaskList />
+                <AddTaskBtn onClick={openModal} />
             </main>
 
             {/* Убедитесь, что элемент для портала существует */}

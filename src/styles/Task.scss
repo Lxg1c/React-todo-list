@@ -1,0 +1,14 @@
+@use "variables" as vars;
+
+.task {
+  max-width: vars.$task-max-width;
+  display: flex;
+
+  &__title {
+    font: {
+      size: vars.$task-font-size;
+      weight: vars.$task-font-weight;
+    }
+  }
+}
+

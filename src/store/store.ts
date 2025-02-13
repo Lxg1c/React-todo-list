@@ -1,10 +1,11 @@
 import {configureStore} from "@reduxjs/toolkit";
 import taskSlice from "./slices/taskSlice.ts";
 
-const store = configureStore({
+export const store = configureStore({
     reducer: {
-        taskSlice,
+        task: taskSlice,
     }
 })
 
-export default store
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

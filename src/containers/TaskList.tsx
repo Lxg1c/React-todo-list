@@ -15,9 +15,14 @@ const TaskList: React.FC = () => {
 
     return (
         <ul className="task__list">
-            {tasks.map((task, index: number) => (
-                <li key={index} className="task__list-item">
-                    <Task id={task.id} status={task.status} taskContent={task.taskContent} />
+            {tasks.map((task) => (
+                <li key={task.id} className="task__list-item">
+                    <Task
+                        id={task.id}
+                        status={task.status}
+                        taskContent={task.taskContent}
+                        onDelete={onDelete} // Передаем onDelete
+                    />
                 </li>
             ))}
         </ul>

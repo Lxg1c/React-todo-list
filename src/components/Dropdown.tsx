@@ -19,7 +19,7 @@ const items: MenuProps['items'] = [
     },
 ];
 
-const App: React.FC = () => {
+const DropDownCustom: React.FC = () => {
     const [currentValue, setCurrentValue] = useState<string>('ALL');
 
     const handleMenuClick: MenuProps['onClick'] = (e) => {
@@ -50,4 +50,4 @@ const App: React.FC = () => {
     );
 };
 
-export default App;
+export default DropDownCustom;

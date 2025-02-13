@@ -21,12 +21,12 @@ const taskSlice = createSlice({
     initialState,
 
     reducers: {
-        // Для обновления всего массива задач (если это ваша цель)
+        // action Для обновления всего массива задач (если это ваша цель)
         setNewTaskInput: (state, action: PayloadAction<string>) => {
             state.newTaskInput = action.payload;
         },
 
-        // Для обновления статус конкретной задачи
+        // action, Для обновления статус конкретной задачи
         toggleTaskStatus: (state, action: PayloadAction<number>) => {
             const task = state.tasks.find((task) => task.id === action.payload);
 
@@ -35,12 +35,17 @@ const taskSlice = createSlice({
             }
         },
 
-        // Добавление новой задачи в массив
+        // action, Добавление новой задачи в массив
         addTask: (state, action: PayloadAction<Task>) => {
             state.tasks.push(action.payload);
+        },
+
+        // action, Удаления задачи
+        removeTask: (state, action: PayloadAction<number>) => {
+            state.tasks = state.tasks.filter((task) => task.id !== action.payload);
         }
     }
 });
 
-export const { addTask, setNewTaskInput, toggleTaskStatus } = taskSlice.actions;
+export const { addTask, setNewTaskInput, toggleTaskStatus, removeTask } = taskSlice.actions;
 export default taskSlice.reducer;

@@ -1,8 +1,13 @@
 import './styles/App.scss';
 import Header from './components/Header.tsx';
-import Search from './components/Search.tsx';
-import CustomDropdown from "./components/Dropdown.tsx";
-import {JSX} from "react";
+import TaskBar from "./containers/TopBar.tsx"
+import AddTaskBtn from "./containers/AddTaskBtn.tsx";
+import Modal from "./containers/Modal.tsx";
+import React, {JSX, useState} from "react";
+import {useDispatch, useSelector, } from "react-redux";
+import {addTask, setNewTaskInput} from "./store/slices/taskSlice.ts";
+import TaskList from "./containers/TaskList.tsx";
+import {RootState} from "./store/store.ts";
 
 function App(): JSX.Element {
     const [isModalVisible, setIsModalVisible] = useState(false);

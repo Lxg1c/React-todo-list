@@ -3,6 +3,7 @@ import trashIcon from "../../public/trash.svg";
 import reeditIcon from "../../public/re-edit.svg";
 import { Checkbox } from 'antd';
 import type { CheckboxProps } from 'antd';
+import "../styles/Task.scss"
 
 interface TaskProps {
     taskContent: string;

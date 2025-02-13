@@ -17,19 +17,30 @@ const initialState: TaskState = {
 }
 
 const taskSlice = createSlice({
-    name: "counter",
-    initialState: { taskArray: [] as TaskInterface[]}, // Исправлено начальное состояние
+    name: 'task',
+    initialState,
 
     reducers: {
-        increment: (state, action) => {
-            state.taskArray.push(action.payload);
+        // Для обновления всего массива задач (если это ваша цель)
+        setNewTaskInput: (state, action: PayloadAction<string>) => {
+            state.newTaskInput = action.payload;
         },
-        decrement: (state, action) => {
-            // Используем фильтрацию и присваиваем результат обратно
-            state.taskArray = state.taskArray.filter((task) => task !== action.payload);
+
+        // Для обновления статус конкретной задачи
+        toggleTaskStatus: (state, action: PayloadAction<number>) => {
+            const task = state.tasks.find((task) => task.id === action.payload);
+
+            if (task) {
+                task.status = !task.status;
+            }
+        },
+
+        // Добавление новой задачи в массив
+        addTask: (state, action: PayloadAction<Task>) => {
+            state.tasks.push(action.payload);
         }
     }
 });
 
-export const { increment, decrement } = taskSlice.actions;
+export const { addTask, setNewTaskInput, toggleTaskStatus } = taskSlice.actions;
 export default taskSlice.reducer;

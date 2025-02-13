@@ -1,29 +1,26 @@
+// DropDownCustom.tsx
 import React, { useState } from 'react';
 import { DownOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Button, Dropdown, Space, ConfigProvider } from 'antd';
-import {CustomBtn} from "../utils/const.ts";
+import { useDispatch } from 'react-redux';
+import { setFilterStatus } from '../store/slices/taskSlice.ts';
+import { CustomBtn } from '../utils/const.ts';
 
 const items: MenuProps['items'] = [
-    {
-        label: 'ALL',
-        key: '1',
-    },
-    {
-        label: 'Completed',
-        key: '2',
-    },
-    {
-        label: 'Incomplete',
-        key: '3',
-    },
+    { label: 'All', key: 'all' },
+    { label: 'Completed', key: 'completed' },
+    { label: 'Incomplete', key: 'incomplete' },
 ];
 
 const DropDownCustom: React.FC = () => {
-    const [currentValue, setCurrentValue] = useState<string>('ALL');
+    const [currentValue, setCurrentValue] = useState<string>('All');
+    const dispatch = useDispatch();
 
     const handleMenuClick: MenuProps['onClick'] = (e) => {
-        setCurrentValue(e.key === '1' ? 'All' : e.key === '2' ? 'Completed' : 'Incomplete');
+        const status = e.key as 'all' | 'completed' | 'incomplete'; // Получаем фильтр
+        setCurrentValue(status.charAt(0).toUpperCase() + status.slice(1)); // Поменять первую букву на заглавную
+        dispatch(setFilterStatus(status)); // Устанавливаем новый фильтр в глобальное состояние
     };
 
     const menuProps = {
@@ -32,21 +29,16 @@ const DropDownCustom: React.FC = () => {
     };
 
     return (
-        <>
-            <ConfigProvider
-                theme={CustomBtn}
-            >
-                <Dropdown menu={menuProps}>
-                    <Button size={'large'}>
-                        <Space>
-                            {currentValue}
-                            <DownOutlined />
-                        </Space>
-                    </Button>
-                </Dropdown>
-            </ConfigProvider>
-        </>
-
+        <ConfigProvider theme={CustomBtn}>
+            <Dropdown menu={menuProps}>
+                <Button size={'large'}>
+                    <Space>
+                        {currentValue}
+                        <DownOutlined />
+                    </Space>
+                </Button>
+            </Dropdown>
+        </ConfigProvider>
     );
 };
 

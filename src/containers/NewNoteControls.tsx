@@ -2,6 +2,10 @@ import Btn from "../components/Btn.tsx";
 import {Button} from "antd";
 import React from "react";
 
+interface NewNoteControlsProps {
+    onClose: () => void;
+    onApply: () => void;
+}
 
 const NewNoteControls: React.FC = () => {
     return (

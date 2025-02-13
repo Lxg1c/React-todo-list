@@ -16,7 +16,11 @@ function App(): JSX.Element {
                     <CustomDropdown />
                 </div>
             </main>
-            
+
+            {/* Убедитесь, что элемент для портала существует */}
+            <div id='portal_root' className='right-0 left-0 bottom-0 top-0'>
+                {isModalVisible ? <Modal onClose={closeModal} onApply={onApply} onChange={handleChange}/> : null}
+            </div>
         </div>
     );
 }

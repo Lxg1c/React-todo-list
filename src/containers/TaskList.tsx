@@ -1,12 +1,17 @@
 import React from "react";
-// import emptyLight from '../../public/empty-light.svg'
 import Task from "./Task.tsx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store.ts";
-import "../styles/TaskList.scss"
+import { removeTask } from "../store/slices/taskSlice.ts";
+import "../styles/TaskList.scss";
 
 const TaskList: React.FC = () => {
+    const dispatch = useDispatch();
     const tasks = useSelector((state: RootState) => state.task.tasks);
+
+    const onDelete = (id: number) => {
+        dispatch(removeTask(id)); // Удаление задачи по id
+    };
 
     return (
         <ul className="task__list">

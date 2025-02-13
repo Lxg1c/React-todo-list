@@ -5,6 +5,28 @@ import CustomDropdown from "./components/Dropdown.tsx";
 import {JSX} from "react";
 
 function App(): JSX.Element {
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const dispatch = useDispatch();
+
+    const newTaskInput = useSelector((state: RootState) => state.task.newTaskInput); // Правильный путь к состоянию
+
+    const openModal = () => setIsModalVisible(true);
+    const closeModal = () => setIsModalVisible(false);
+    const onApply = () => {
+        if (newTaskInput.trim()) { // Проводим проверку на пустоту ввода
+            dispatch(addTask({
+                id: Date.now(), // Генерация уникального ID задачи (можно заменить на более подходящее решение)
+                taskContent: newTaskInput,
+                status: false,
+            }));
+        }
+    };
+
+
+    // Обработчик изменения значения в поле ввода
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(setNewTaskInput(e.target.value));
+    };
 
     return (
         <div className='app container h-full relative'>

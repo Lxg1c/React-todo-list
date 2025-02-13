@@ -7,7 +7,7 @@ import {JSX} from "react";
 function App(): JSX.Element {
 
     return (
-        <div className='app container'>
+        <div className='app container h-full relative'>
             <Header />
             
             <main>

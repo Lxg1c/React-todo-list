@@ -18,3 +18,7 @@ img {
     height: 100%;
     object-fit: contain;
 }
+
+.btn-reset {
+    cursor: pointer;
+}

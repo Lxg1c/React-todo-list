@@ -1,5 +1,5 @@
 import './styles/App.scss';
-import Header from './components/Header.tsx';
+import Header from './containers/Header.tsx';
 import TaskBar from "./containers/TopBar.tsx"
 import AddTaskBtn from "./containers/AddTaskBtn.tsx";
 import Modal from "./containers/Modal.tsx";

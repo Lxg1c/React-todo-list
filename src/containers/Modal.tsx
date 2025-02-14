@@ -9,9 +9,10 @@ import {selectCurrentTheme} from "../store/selectors.ts";
 interface ModalProps {
     onClose: () => void;
     onApply: () => void;
+    onChange: React.ChangeEventHandler<HTMLInputElement>
 }
 
-const Modal: React.FC<ModalProps> = ({ onClose, onApply }) => {
+const Modal: React.FC<ModalProps> = ({ onClose, onApply, onChange }) => {
     const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
     const theme = useSelector(selectCurrentTheme)
 
@@ -31,7 +32,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, onApply }) => {
         <div className="modal" >
             <div className="modal__content" style={{ backgroundColor: theme === 'light' ? '#ffffff' : '#252525'}}>
                 <h1 className="modal__content-title mb-6.25" style={{color: theme === 'light' ? '#252525' : '#ffffff'}}>NEW NOTE</h1>
-                <Search />
+                <Search onChange={onChange} />
                 <NewNoteControls onClose={onClose} onApply={onApply} />
             </div>
         </div>,

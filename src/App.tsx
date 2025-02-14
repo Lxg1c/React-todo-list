@@ -39,18 +39,36 @@ function App(): JSX.Element {
     };
 
     return (
-        <div className="app container h-full relative">
-            <Header />
-            <main className="relative">
-                <TaskBar />
-                <TaskList />
-                <AddTaskBtn onClick={openModal} />
-            </main>
-
-            <div id="portal_root" className="right-0 left-0 bottom-0 top-0">
-                {isModalVisible ? <Modal onClose={closeModal} onApply={onApply} onChange={handleChange} /> : null}
+        <ConfigProvider
+            theme={{
+                token: {
+                    fontSize: 18,
+                    colorBgContainer: '#6C63FF',
+                },
+            }}
+        >
+            <div
+                className="app"
+                style={{
+                    background: theme === 'dark' ? '#252525' : '#ffffff',
+                    minHeight: '100vh', // Занимает минимум 100% высоты viewport
+                    display: 'flex',
+                    flexDirection: 'column',
+                }}
+            >
+                <div className="app__container container">
+                    <Header />
+                    <main className="flex-grow">
+                        <TaskBar />
+                        <TaskList />
+                        <AddTaskBtn onClick={openModal} />
+                    </main>
+                    <div id="portal_root" className="right-0 left-0 bottom-0 top-0">
+                        {isModalVisible ? <Modal onClose={closeModal} onApply={onApply} onChange={handleChange} /> : null}
+                    </div>
+                </div>
             </div>
-        </div>
+        </ConfigProvider>
     );
 }
 

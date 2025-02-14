@@ -1,7 +1,7 @@
 import React from 'react'
-import Search from "../components/Search.tsx";
+import Search from "../components/CustomInput.tsx";
 import CustomDropdown from "../components/Dropdown.tsx";
-import ChangeThemeBtn from "../components/ChangeThemeBtn.tsx";
+import ChangeThemeBtn from "./ChangeThemeBtn.tsx";
 
 const TaskBar: React.FC = () => {
     return (

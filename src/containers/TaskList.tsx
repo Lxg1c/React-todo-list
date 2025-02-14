@@ -1,14 +1,17 @@
-// TaskList.tsx
 import React from 'react';
 import Task from './Task.tsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store.ts';
 import { removeTask } from '../store/slices/taskSlice.ts';
 import '../styles/TaskList.scss';
+import {selectCurrentTheme, selectTasks} from "../store/selectors.ts";
+import EmptyLight from '../../public/empty-light.svg'
+import EmptyDark from '../../public/empty-dark.svg'
 
 const TaskList: React.FC = () => {
     const dispatch = useDispatch();
-    const tasks = useSelector((state: RootState) => state.task.tasks);
+    const tasks = useSelector(selectTasks);
+    const theme = useSelector(selectCurrentTheme)
     const filterStatus = useSelector((state: RootState) => state.task.filterStatus);
 
     // Фильтрация задач в зависимости от текущего состояния фильтра
@@ -24,21 +27,27 @@ const TaskList: React.FC = () => {
     };
 
     return (
-        <div>
-            <ul className="task__list">
-                {filteredTasks.map((task) => (
-                    <li key={task.id} className="task__list-item">
-                        <Task
-                            id={task.id}
-                            status={task.status}
-                            taskContent={task.taskContent}
-                            onDelete={onDelete}
-                        />
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
+        <>
+            {tasks.length === 0 ? (
+                <img src={theme === 'light' ? EmptyLight : EmptyDark} alt="There are no tasks" />
+            ) : (
+                <div>
+                    <ul className="task__list">
+                        {filteredTasks.map((task) => (
+                            <li key={task.id} className="task__list-item">
+                                <Task
+                                    id={task.id}
+                                    status={task.status}
+                                    taskContent={task.taskContent}
+                                    onDelete={onDelete}
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+        </>
+    )
 };
 
 export default TaskList;

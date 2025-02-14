@@ -1,5 +1,5 @@
 import Btn from "../components/Btn.tsx";
-import { Button } from "antd";
+import {Button, ConfigProvider} from "antd";
 import React from "react";
 
 interface NewNoteControlsProps {
@@ -16,7 +16,11 @@ const NewNoteControls: React.FC<NewNoteControlsProps> = ({ onClose, onApply }) =
 
     return (
         <div className="modal__content-controls flex justify-between align-middle mt-32">
-            <Button onClick={onClose}>CANCEL</Button>
+            <ConfigProvider theme={{
+                inherit: false,
+            }}>
+                <Button onClick={onClose}>CANCEL</Button>
+            </ConfigProvider>
             <Btn onClick={handleApplyAndClose}>
                 APPLY
             </Btn>

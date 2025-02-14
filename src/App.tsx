@@ -8,13 +8,15 @@ import React, {JSX, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addTask, setNewTaskInput } from './store/slices/taskSlice.ts';
 import TaskList from './containers/TaskList.tsx';
-import { RootState } from './store/store.ts';
+import {ConfigProvider} from "antd";
+import {selectCurrentTheme, selectNewTaskInput} from "./store/selectors.ts";
 
 function App(): JSX.Element {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const dispatch = useDispatch();
 
-    const newTaskInput = useSelector((state: RootState) => state.task.newTaskInput);
+    const theme = useSelector(selectCurrentTheme);
+    const newTaskInput = useSelector(selectNewTaskInput);
 
     const openModal = () => setIsModalVisible(true);
     const closeModal = () => setIsModalVisible(false);

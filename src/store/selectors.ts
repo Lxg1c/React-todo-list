@@ -28,3 +28,9 @@ export const selectActiveTasksCount = createSelector(
     [selectTasks],
     (tasks) => tasks.filter((task) => !task.status).length
 );
+
+// Селектор для получения поля ввода для новой задачи
+export const selectNewTaskInput = createSelector(
+    [selectTaskState], // Зависимость от состояния задач
+    (taskState) => taskState.newTaskInput // Возвращаем поле newTaskInput
+);

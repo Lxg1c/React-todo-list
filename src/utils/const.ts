@@ -23,3 +23,9 @@ export const CustomBtn = {
         }
     }
 }
+
+export const CustomFloatBtn = {
+    token: {
+        colorBgElevated: '#6C63FF',
+    }
+}

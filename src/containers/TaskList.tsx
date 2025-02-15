@@ -1,21 +1,20 @@
 import React from 'react';
-import Task from './Task.tsx';
 import { useDispatch, useSelector } from 'react-redux';
+import {selectCurrentTheme, selectFilteredTasks} from '../store/selectors.ts';
+import Task from './Task.tsx';
 import { removeTask } from '../store/slices/taskSlice.ts';
 import '../styles/TaskList.scss';
-import { selectCurrentTheme, selectFilteredTasks } from "../store/selectors.ts"; // Используем новый селектор
-import EmptyLight from '../assets/empty-light.svg'
-import EmptyDark from '../assets/empty-dark.svg'
+import EmptyLight from '../assets/empty-light.svg';
+import EmptyDark from '../assets/empty-dark.svg';
 
 const TaskList: React.FC = () => {
     const dispatch = useDispatch();
+    const filteredTasks = useSelector(selectFilteredTasks);
+    const theme = useSelector(selectCurrentTheme);
 
-    // Используем селекторы
-    const filteredTasks = useSelector(selectFilteredTasks); // Отфильтрованные задачи
-    const theme = useSelector(selectCurrentTheme); // Текущая тема
 
     const onDelete = (id: number) => {
-        dispatch(removeTask(id)); // Удаляем задачу по ID
+        dispatch(removeTask(id));
     };
 
     return (

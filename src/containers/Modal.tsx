@@ -37,6 +37,11 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
         dispatch(setNewTaskInput(e.target.value));
     };
 
+    const handleCancel = () => {
+        onClose();
+        dispatch(setNewTaskInput(""));
+    }
+
     const onApply = () => {
         if (newTaskInput.trim()) {
             dispatch(
@@ -56,8 +61,8 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
         <div className="modal" >
             <div className="modal__content" style={{ backgroundColor: theme === 'light' ? '#ffffff' : '#252525'}}>
                 <h1 className="modal__content-title mb-6.25" style={{color: theme === 'light' ? '#252525' : '#ffffff'}}>NEW NOTE</h1>
-                <Search onChange={handleChange} />
-                <NewNoteControls onClose={onClose} onApply={onApply} />
+                <Search value={newTaskInput} onChange={handleChange} />
+                <NewNoteControls onClose={handleCancel} onApply={onApply} />
             </div>
         </div>,
         portalRoot

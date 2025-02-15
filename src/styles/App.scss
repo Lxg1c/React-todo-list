@@ -1,5 +1,11 @@
 @use "_variables" as vars;
 
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   max-width: vars.$container-max-width;
   margin: vars.$container-margin;

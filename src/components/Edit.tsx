@@ -4,7 +4,7 @@ import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import {useSelector} from "react-redux";
 import {selectCurrentTheme} from "../store/selectors.ts";
 
-const ReEdit: React.FC = () => {
+const Edit: React.FC = () => {
     const theme = useSelector(selectCurrentTheme);
 
     return (
@@ -14,4 +14,4 @@ const ReEdit: React.FC = () => {
     )
 }
 
-export default ReEdit
+export default Edit

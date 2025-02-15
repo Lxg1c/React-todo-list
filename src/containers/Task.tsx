@@ -1,6 +1,6 @@
 import React from 'react';
 import DeleteBtn from "../components/DeleteBtn.tsx";
-import ReEdit from "../components/ReEdit.tsx";
+import Edit from "../components/Edit.tsx";
 import { Space } from 'antd';
 import {useDispatch, useSelector} from "react-redux";
 import { toggleTaskStatus } from "../store/slices/taskSlice.ts";
@@ -12,7 +12,7 @@ interface TaskProps {
     id: number;
     taskContent: string;
     status: boolean;
-    onDelete: (id: number) => void; // Передаем onDelete как пропс
+    onDelete: (id: number) => void;
 }
 
 const Task: React.FC<TaskProps> = ({ id, taskContent, status, onDelete }) => {
@@ -39,8 +39,8 @@ const Task: React.FC<TaskProps> = ({ id, taskContent, status, onDelete }) => {
 
             <div className="taskControls">
                 <Space>
-                    <ReEdit />
-                    <DeleteBtn id={id} onDelete={onDelete} /> {/* Передаем id и onDelete */}
+                    <Edit />
+                    <DeleteBtn id={id} onDelete={onDelete} />
                 </Space>
             </div>
         </>

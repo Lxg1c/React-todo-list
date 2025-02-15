@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
-import MoonIcon from '../../public/moonIcon.svg'; // Убедитесь, что путь правильный
-import SunIcon from '../../public/sunIcon.svg'; // Убедитесь, что путь правильный
+import MoonIcon from '../assets/moonIcon.svg'; // Убедитесь, что путь правильный
+import SunIcon from '../assets/sunIcon.svg'; // Убедитесь, что путь правильный
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCurrentTheme } from '../store/selectors';
 import { toggleTheme } from '../store/slices/themeSlice'; // Импортируйте действие

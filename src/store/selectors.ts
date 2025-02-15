@@ -5,12 +5,6 @@ import { RootState } from './store';
 const selectTaskState = (state: RootState) => state.task;
 const selectThemeState = (state: RootState) => state.theme;
 
-// Селектор для получения списка задач
-export const selectTasks = createSelector(
-    [selectTaskState], // Зависимости
-    (taskState) => taskState.tasks // Функция преобразования
-);
-
 // Селектор для получения текущей темы
 export const selectCurrentTheme = createSelector(
     [selectThemeState],

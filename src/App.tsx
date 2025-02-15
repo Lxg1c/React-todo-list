@@ -44,7 +44,7 @@ function App(): JSX.Element {
 
                     <main className="flex-grow">
                         <TaskBar />
-                        <TaskList openModal={openModal} />
+                        <TaskList />
                         <AddTaskBtn onClick={openModal} />
                     </main>
                     

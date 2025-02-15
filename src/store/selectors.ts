@@ -17,17 +17,26 @@ export const selectNewTaskInput = createSelector(
     (taskState) => taskState.newTaskInput // Возвращаем поле newTaskInput
 );
 
-// Селектор для получения отфильтрованных задач
+// Селектор для поиска задач с учетом фильтрации по статусу и запросу
 export const selectFilteredTasks = createSelector(
-    [selectTasks, (state: RootState) => state.task.filterStatus], // Зависимости: задачи и статус фильтра
-    (tasks, filterStatus) => {
-        switch (filterStatus) {
-            case 'completed':
-                return tasks.filter((task) => task.status);
-            case 'incomplete':
-                return tasks.filter((task) => !task.status);
-            default:
-                return tasks;
+    (state: RootState) => state.task.tasks,
+    (state: RootState) => state.task.filterStatus,
+    (state: RootState) => state.task.searchQuery,  // Добавляем поисковый запрос
+    (tasks, filterStatus, searchQuery) => {
+        let filteredTasks = tasks;
+
+        // Фильтрация по статусу
+        if (filterStatus === 'completed') {
+            filteredTasks = filteredTasks.filter(task => task.status);
+        } else if (filterStatus === 'incomplete') {
+            filteredTasks = filteredTasks.filter(task => !task.status);
         }
+
+        // Фильтрация по поисковому запросу
+        if (searchQuery) {
+            filteredTasks = filteredTasks.filter(task => task.taskContent.toLowerCase().includes(searchQuery.toLowerCase()));
+        }
+
+        return filteredTasks;
     }
-);
+)

@@ -11,6 +11,7 @@ interface TaskState {
     tasks: Task[];
     newTaskInput: string;
     filterStatus: 'all' | 'completed' | 'incomplete';
+    searchQuery: string;  // Новое поле для поискового запроса
 }
 
 // Функция для получения начального состояния задач из cookies
@@ -20,9 +21,10 @@ const getInitialTasks = (): Task[] => {
 };
 
 const initialState: TaskState = {
-    tasks: getInitialTasks(), // Восстановление задач из cookies
+    tasks: getInitialTasks(),
     newTaskInput: '',
     filterStatus: 'all',
+    searchQuery: '',  // Инициализация поискового запроса
 };
 
 const taskSlice = createSlice({
@@ -52,6 +54,15 @@ const taskSlice = createSlice({
             Cookies.set('tasks', JSON.stringify(state.tasks)); // Сохраняем задачи в cookies
         },
 
+        // Экшен для изменения контента задачи
+        editTask: (state, action: PayloadAction<{id: number, newTaskContent: string}>) => {
+            const task = state.tasks.find((task) => task.id === action.payload.id);
+
+            if (task) {
+                task.taskContent = action.payload.newTaskContent;
+            }
+        },
+
         setFilterStatus: (state, action: PayloadAction<'all' | 'completed' | 'incomplete'>) => {
             state.filterStatus = action.payload;
         },
@@ -60,8 +71,21 @@ const taskSlice = createSlice({
         setTasks: (state, action: PayloadAction<Task[]>) => {
             state.tasks = action.payload;
         },
+
+        setSearchQuery: (state, action: PayloadAction<string>) => {
+            state.searchQuery = action.payload;
+        },
     },
 });
 
-export const { addTask, setNewTaskInput, toggleTaskStatus, removeTask, setFilterStatus, setTasks } = taskSlice.actions;
+export const {
+    addTask,
+    setNewTaskInput,
+    toggleTaskStatus,
+    removeTask,
+    setFilterStatus,
+    setTasks,
+    setSearchQuery,
+    editTask
+} = taskSlice.actions;
 export default taskSlice.reducer;

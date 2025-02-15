@@ -17,20 +17,23 @@ export const selectCurrentTheme = createSelector(
     (themeState) => themeState.theme
 );
 
-// Селектор для получения количества завершенных задач
-export const selectCompletedTasksCount = createSelector(
-    [selectTasks],
-    (tasks) => tasks.filter((task) => task.status).length
-);
-
-// Селектор для получения количества активных задач
-export const selectActiveTasksCount = createSelector(
-    [selectTasks],
-    (tasks) => tasks.filter((task) => !task.status).length
-);
-
 // Селектор для получения поля ввода для новой задачи
 export const selectNewTaskInput = createSelector(
     [selectTaskState], // Зависимость от состояния задач
     (taskState) => taskState.newTaskInput // Возвращаем поле newTaskInput
+);
+
+// Селектор для получения отфильтрованных задач
+export const selectFilteredTasks = createSelector(
+    [selectTasks, (state: RootState) => state.task.filterStatus], // Зависимости: задачи и статус фильтра
+    (tasks, filterStatus) => {
+        switch (filterStatus) {
+            case 'completed':
+                return tasks.filter((task) => task.status);
+            case 'incomplete':
+                return tasks.filter((task) => !task.status);
+            default:
+                return tasks;
+        }
+    }
 );

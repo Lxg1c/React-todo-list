@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-import Search from "../components/Search.tsx";
+import Search from "../components/CustomInput.tsx";
 import '../styles/Modal.scss';
 import NewNoteControls from "./NewNoteControls.tsx";
+import {useSelector} from "react-redux";
+import {selectCurrentTheme} from "../store/selectors.ts";
 
 interface ModalProps {
     onClose: () => void;
     onApply: () => void;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;  // Исправили тип на функцию
+    onChange: React.ChangeEventHandler<HTMLInputElement>
 }
 
 const Modal: React.FC<ModalProps> = ({ onClose, onApply, onChange }) => {
     const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
+    const theme = useSelector(selectCurrentTheme)
 
     useEffect(() => {
         const rootElement = document.getElementById("portal_root");
@@ -26,9 +29,9 @@ const Modal: React.FC<ModalProps> = ({ onClose, onApply, onChange }) => {
     if (!portalRoot) return null;
 
     return ReactDOM.createPortal(
-        <div className="modal">
-            <div className="modal__content">
-                <h1 className="modal__content-title mb-6.25">NEW NOTE</h1>
+        <div className="modal" >
+            <div className="modal__content" style={{ backgroundColor: theme === 'light' ? '#ffffff' : '#252525'}}>
+                <h1 className="modal__content-title mb-6.25" style={{color: theme === 'light' ? '#252525' : '#ffffff'}}>NEW NOTE</h1>
                 <Search onChange={onChange} />
                 <NewNoteControls onClose={onClose} onApply={onApply} />
             </div>

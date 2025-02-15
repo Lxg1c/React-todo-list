@@ -6,11 +6,17 @@
     list-style: none;
     box-sizing: border-box;
     font-family: 'Kanit', sans-serif;
-    /*overflow: hidden;*/
 }
 
-html {
-    height: 100vh;
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
 }
 
 img {

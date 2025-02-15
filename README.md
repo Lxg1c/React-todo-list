@@ -51,3 +51,5 @@ export default tseslint.config({
 ```
 ![img.png](img.png)
 
+design: https://www.figma.com/design/ZBN98q4NqIm6rMGMwv9SBL/Simple-ToDo-List-Design-(Community)?node-id=0-1&p=f&t=L8ZnYyt0FcQRFxdV-0
+

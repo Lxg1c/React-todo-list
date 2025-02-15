@@ -24,7 +24,7 @@ const initialState: TaskState = {
     tasks: getInitialTasks(),
     newTaskInput: '',
     filterStatus: 'all',
-    searchQuery: '',  // Инициализация поискового запроса
+    searchQuery: '',
 };
 
 const taskSlice = createSlice({
@@ -55,11 +55,11 @@ const taskSlice = createSlice({
         },
 
         // Экшен для изменения контента задачи
-        editTask: (state, action: PayloadAction<{id: number, newTaskContent: string}>) => {
-            const task = state.tasks.find((task) => task.id === action.payload.id);
-
-            if (task) {
-                task.taskContent = action.payload.newTaskContent;
+        updateTask: (state, action: PayloadAction<{id: number, newTaskContent: string}>) => {
+            const index = state.tasks.findIndex(task => task.id === action.payload.id);
+            if (index !== -1) {
+                state.tasks[index].taskContent = action.payload.newTaskContent;
+                Cookies.set('tasks', JSON.stringify(state.tasks)); // Сохраняем задачи в cookies
             }
         },
 
@@ -86,6 +86,6 @@ export const {
     setFilterStatus,
     setTasks,
     setSearchQuery,
-    editTask
+    updateTask
 } = taskSlice.actions;
 export default taskSlice.reducer;

@@ -1,4 +1,4 @@
-import plusIcon from "../../public/plusIcon.svg"
+import plusIcon from "../assets/plusIcon.svg"
 import React from 'react'
 import Btn from "../components/Btn.tsx";
 

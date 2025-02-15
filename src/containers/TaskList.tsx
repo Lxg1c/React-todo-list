@@ -5,8 +5,8 @@ import { RootState } from '../store/store.ts';
 import { removeTask } from '../store/slices/taskSlice.ts';
 import '../styles/TaskList.scss';
 import {selectCurrentTheme, selectTasks} from "../store/selectors.ts";
-import EmptyLight from '../../public/empty-light.svg'
-import EmptyDark from '../../public/empty-dark.svg'
+import EmptyLight from '../assets/empty-light.svg'
+import EmptyDark from '../assets/empty-dark.svg'
 
 const TaskList: React.FC = () => {
     const dispatch = useDispatch();

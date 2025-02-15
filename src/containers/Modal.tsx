@@ -3,19 +3,26 @@ import ReactDOM from "react-dom";
 import Search from "../components/CustomInput.tsx";
 import '../styles/Modal.scss';
 import NewNoteControls from "./NewNoteControls.tsx";
-import {useSelector} from "react-redux";
-import {selectCurrentTheme} from "../store/selectors.ts";
+import {useDispatch, useSelector} from "react-redux";
+import {selectCurrentTheme, selectNewTaskInput} from "../store/selectors.ts";
+import {addTask, setNewTaskInput} from "../store/slices/taskSlice.ts";
 
 interface ModalProps {
     onClose: () => void;
-    onApply: () => void;
-    onChange: React.ChangeEventHandler<HTMLInputElement>
 }
 
-const Modal: React.FC<ModalProps> = ({ onClose, onApply, onChange }) => {
+const Modal: React.FC<ModalProps> = ({ onClose }) => {
+    // State to contain portal_root tag
     const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
+
+    // Dispatcher to send actions to reducer
+    const dispatch = useDispatch();
+
+    // Selectors
+    const newTaskInput = useSelector(selectNewTaskInput);
     const theme = useSelector(selectCurrentTheme)
 
+    // Func to search portal_root div
     useEffect(() => {
         const rootElement = document.getElementById("portal_root");
         if (!rootElement) {

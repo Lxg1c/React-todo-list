@@ -41,11 +41,13 @@ function App(): JSX.Element {
             >
                 <div className="app__container container">
                     <Header />
+
                     <main className="flex-grow">
                         <TaskBar />
-                        <TaskList />
+                        <TaskList openModal={openModal} />
                         <AddTaskBtn onClick={openModal} />
                     </main>
+                    
                     <div id="portal_root" className="right-0 left-0 bottom-0 top-0">
                         {isModalVisible ? <Modal onClose={closeModal} /> : null}
                     </div>

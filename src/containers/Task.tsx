@@ -48,17 +48,15 @@ const Task: React.FC<TaskProps> = ({ id, taskContent, status, onDelete }) => {
         <>
             {edit ? (
                 <>
-                    <div className="task__content flex flex-2">
-                        <Space>
-                            <Input
-                                placeholder={taskContent}
-                                value={inputContent}
-                                onChange={handleInput}
-                            />
-                            <Btn size="middle" onClick={toggleEdit}>
-                                APPLY
-                            </Btn>
-                        </Space>
+                    <div className="task__content flex gap-2 grow-1">
+                        <Input
+                            placeholder={taskContent}
+                            value={inputContent}
+                            onChange={handleInput}
+                        />
+                        <Btn size="middle" onClick={toggleEdit}>
+                            APPLY
+                        </Btn>
                     </div>
 
 
